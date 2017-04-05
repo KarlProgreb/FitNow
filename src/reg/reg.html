@@ -1,0 +1,29 @@
+<template>
+    
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FitNow</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="FitNowCSS.css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+    
+<body>
+<h1 style="color:#DF7401; font-family:verdana; text-align: center;">FitNow</h1>
+<p style="color:#DF8801; font-family:Palatino; text-align: center;">Simplified fitness schedules, meal plans, tips and much more!</p>
+
+<p style="color:gray; font-family:Palatino; text-align: center;">Please enter your registration details: </p> <br>
+    
+    <form style="text-align: center;" id="regform" submit.delegate="addUser()">
+    <div><label for="firstName">First name: </label><input id="firstName" type="text" name="firstName"></div><br>
+    <div><label for="lastName">Last name: </label><input id="lastName" type="text" name="lastName"></div><br>
+    <div><label for="email">E-mail: </label><input id="email" type="text" name="email"></div><br>
+    <input type="submit" id="Submit">
+    </form>
+    
+</body>
+</html>
+    
+</template>
