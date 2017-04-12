@@ -23,6 +23,12 @@ public class UserController {
 		return userService.addUser(user);
 	}
 	
+	@RequestMapping(value="/users/getMeal", method=RequestMethod.GET,
+			consumes = "application/json")
+	public User getMealPlan(@RequestBody User user) {
+		return userService.getMealPlan(user);
+	}
+	
 	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public List<User> getAllUsers() {
 		return userService.getAllUsers();

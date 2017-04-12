@@ -20,33 +20,36 @@
     </div>
 <br>
     
-<p style="color:gray; font-family:Palatino; text-align: center;">To generate a brand new fitness plan, please select your main fitness goal: </p>
+<p style="color:gray; font-family:Palatino; text-align: center;">To download your new workout schedule, please select your main fitness goal: </p>
+<div style="text-align: center;">
     
-<form style="text-align: center;">
-  <input type="radio" name="goal" value="LoseWeight"> Lose weight<br>
-  <input type="radio" name="goal" value="BuildMuscle"> Build muscle<br>
-  <input type="radio" name="goal" value="ImproveEndurance"> Improve endurance  
-</form> 
+  <a style="text-align: center;" href="Weight.txt" download="Weight">Lose Weight</a>
+
+  <a style="text-align: center;" href="Muscle.txt" download="Muscle">Build Muscle</a>
     
+  <a style="text-align: center;" href="Endurance.txt" download="Endurance">Improve Endurance</a>
+    
+</div> 
+        
 <p style="color:gray; font-family:Palatino; text-align: center;">Please enter your details to calculate your personal fitness schedules: </p>
     
 <div style="text-align: center;">
     
-        <form id="SexForm">
+        <form id="infoForm" submit.delegate="getMealPlan()">
             Gender:
-                <input type="radio" name="radioName" value="1">Male 
-                <input type="radio" name="radioName" value="2">Female
-        </form> 
+                <input type="radio" name="radioName" value="1" value.bind="userData.maleGender">Male 
+                <input type="radio" name="radioName" value="2" value.bind="userData.femaleGender">Female
         <br>
-        <div>Age: <input id="age" type="text" name="fname"></div>
-        <div>Weight (kg): <input id="weight" type="text" name="fname"></div>
-        <div>Height (cm): <input id="height" type="text" name="fname"></div>
+        <div>Age: <input id="age" type="text" name="fname" value.bind="userData.age"></div>
+        <div>Weight (kg): <input id="weight" type="text" name="fname" value.bind="userData.weight"></div>
+        <div>Height (cm): <input id="height" type="text" name="fname" value.bind="userData.height"></div>
+            
+    </form>
         <button type="button" id="calcbutton">Generate!</button>
 
         <div id="response">
     </div>
 </div>
-
 
 </body>
 </html>
