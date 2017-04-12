@@ -11,9 +11,9 @@ export class reg {
             'method': "POST",
             'body': json(this.userData)
         })
-      .then(response => response.json())
-      .then(data => {
-        console.log("Server saatis: " + data.firstName);
+            .then(response => response.json())
+            .then(data => {
+            console.log("Server saatis: " + data.firstName);
       });
         
          console.log("Meetod töötab!")

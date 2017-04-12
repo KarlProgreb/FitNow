@@ -16,7 +16,7 @@ public class WorkoutPlan {
 	@Id
 	@GeneratedValue
 	long id;
-	String color;
+	String goal;
 	@ManyToOne
 	User user;
 }

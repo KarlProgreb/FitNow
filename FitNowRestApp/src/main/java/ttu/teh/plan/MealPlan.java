@@ -16,7 +16,7 @@ public class MealPlan {
 	@Id
 	@GeneratedValue
 	long id;
-	String name;
+	int calories;
 	@OneToOne()
 	User user;
 }
