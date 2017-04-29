@@ -30,4 +30,7 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public int getNumber() {
+		return 3;
+	}
 }
