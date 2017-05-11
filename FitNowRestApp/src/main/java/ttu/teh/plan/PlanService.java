@@ -1,36 +1,29 @@
-package ttu.teh.user;
+package ttu.teh.plan;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class PlanService {
 	
-	private UserRepository userRepository;
+	private PlanRepository planRepository;
 
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
+	public PlanService(PlanRepository planRepository) {
+		this.planRepository = planRepository;
 	}
 
-	User addUser(User user) {
+	Plan addPlan(Plan plan) {
 		// here you can do some validations etc before saving the user
-		return userRepository.save(user);
+		return planRepository.save(plan);
 	}
 
-	List<User> getAllUsers() {
-		return userRepository.findAll();
+	List<Plan> getAllPlans() {
+		return planRepository.findAll();
 	}
 
-	User getUserById(long userId) {
-		return userRepository.findOne(userId);
+	Plan getPlanById(long planId) {
+		return planRepository.findOne(planId);
 	}
 
-	public User getMealPlan(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public int getNumber() {
-		return 3;
-	}
 }
