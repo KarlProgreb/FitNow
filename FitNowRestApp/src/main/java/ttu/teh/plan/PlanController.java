@@ -3,7 +3,7 @@ package ttu.teh.plan;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.PathVariable;
-
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +17,13 @@ public class PlanController {
 		this.planService = planService;
 	}
 	
-	/*
+	
 	@RequestMapping(value="/plans/add", method=RequestMethod.POST,
 			consumes = "application/json")
 	public Plan addPlan(@RequestBody Plan plan) {
 		return planService.addPlan(plan);
 	}
-	*/
+	
 	
 	/*
 	@RequestMapping(value="/plans/getMeal", method=RequestMethod.GET,

@@ -1,0 +1,44 @@
+<template>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FitNow</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="FitNowCSS.css">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="calculator.js"></script>
+</head>
+    
+<body>
+<h1 style="color:#DF7401; font-family:verdana; text-align: center;">FitNow</h1>
+<p style="color:#DF8801; font-family:Palatino; text-align: center;">Simplified fitness schedules, meal plans, tips and much more!</p>
+
+<br>
+
+<p style="color:gray; font-family:Palatino; text-align: center;">Please enter your details to generate your personal meal plan: </p>
+    
+<div style="text-align: center;">
+    
+        <form id="planData" submit.delegate="getMealPlan()">
+            Gender:
+                <input id="sex" type="radio" name="Male" value="1">Male 
+                <input id="sex" type="radio" name="Female" value="2">Female
+        <br>
+        <div>Age: <input id="age" type="text" name="age"></div>
+        <div>Weight (kg): <input id="weight" type="text" name="weight"></div>
+        <div>Height (cm): <input id="height" type="text" name="height"></div>
+        <input type="Submit" name="Generate!"> 
+    </form>
+</div> 
+    
+    <p>
+    <h2>Your personal mealplan: </h2>
+    <ul>
+        <li repeat.for="plan of planList">${plan.content}</li>
+    </ul>
+
+</body>
+</html>
+</template>

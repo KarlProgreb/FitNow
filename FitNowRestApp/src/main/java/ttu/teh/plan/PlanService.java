@@ -25,5 +25,4 @@ public class PlanService {
 	Plan getPlanById(long planId) {
 		return planRepository.findOne(planId);
 	}
-
 }

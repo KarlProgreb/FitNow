@@ -14,10 +14,6 @@
 <h1 style="color:#DF7401; font-family:verdana; text-align: center;">FitNow</h1>
 <p style="color:#DF8801; font-family:Palatino; text-align: center;">Simplified fitness schedules, meal plans, tips and much more!</p>
 
-<p style="color:gray; font-family:Palatino; text-align: center;">To browse your previously generated fitness plans, click "Browse": </p>
-<div style="text-align: center;">
-    <a style="text-align: center;" href="#/previous" class="button">Browse</a>
-    </div>
 <br>
     
 <p style="color:gray; font-family:Palatino; text-align: center;">To download your new workout schedule, please select your main fitness goal: </p>
@@ -30,26 +26,6 @@
   <a style="text-align: center;" href="Endurance.txt" download="Endurance">Improve Endurance</a>
     
 </div> 
-        
-<p style="color:gray; font-family:Palatino; text-align: center;">Please enter your details to calculate your personal fitness schedules: </p>
-    
-<div style="text-align: center;">
-    
-        <form id="infoForm" submit.delegate="getMealPlan()">
-            Gender:
-                <input type="radio" name="radioName" value="1" value.bind="userData.maleGender">Male 
-                <input type="radio" name="radioName" value="2" value.bind="userData.femaleGender">Female
-        <br>
-        <div>Age: <input id="age" type="text" name="fname" value.bind="userData.age"></div>
-        <div>Weight (kg): <input id="weight" type="text" name="fname" value.bind="userData.weight"></div>
-        <div>Height (cm): <input id="height" type="text" name="fname" value.bind="userData.height"></div>
-            
-    </form>
-        <button type="button" id="calcbutton">Generate!</button>
-
-        <div id="response">
-    </div>
-</div>
 
 </body>
 </html>
