@@ -5,7 +5,7 @@ $(document).ready(function() {
     var weight = $("#weight").val();
     var height = $("#height").val();
     var parent = document.getElementById("response");
-    var gender = $('input[name=radioName]:checked', '#infoForm').val();
+    var gender = $('input[name=radioName]:checked', '#userform').val();
     submitOK = "true";
     
       if (isNaN(age) || age < 15 || age > 85) {

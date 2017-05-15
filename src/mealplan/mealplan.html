@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="FitNowCSS.css">
     <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script src="calculator.js"></script>
+
 </head>
     
 <body>
@@ -21,23 +21,22 @@
     
 <div style="text-align: center;">
     
-        <form id="planData" submit.delegate="getMealPlan()">
-            Gender:
-                <input id="sex" type="radio" name="Male" value="1">Male 
-                <input id="sex" type="radio" name="Female" value="2">Female
-        <br>
-        <div>Age: <input id="age" type="text" name="age"></div>
-        <div>Weight (kg): <input id="weight" type="text" name="weight"></div>
-        <div>Height (cm): <input id="height" type="text" name="height"></div>
-        <input type="Submit" name="Generate!"> 
-    </form>
+        <form id="userform"> 
+            <div>Gender:</div>
+            <div>Female <input id="sex" type="range" name="sex" min="0" max="1" value.bind="sex"> Male</div> <br>
+            <div>Goal:</div>
+            <div>↓Endurance↓</div>
+            <div>Lose Weight <input id="goal" type="range" name="goal" min="0" max="2" value.bind="goal"> Build muscle</div>
+            <div>Age: <input id="age" type="number" name="age" min="15" max="65" value.bind="age"></div>
+            <div>Weight (kg): <input id="weight" type="number" name="weight" value.bind="weight"></div>
+            <div>Height (cm): <input id="height" type="number" name="height" value.bind="height"></div>
+            <button type="click" click.delegate="calculate()">Generate!</button>
+        </form>
+        
 </div> 
     
-    <p>
-    <h2>Your personal mealplan: </h2>
-    <ul>
-        <li repeat.for="plan of planList">${plan.content}</li>
-    </ul>
+    <h4 style="color:black; font-family:Palatino; text-align: center;">Your personal mealplan: </h4>
+    <p id="mealPlanID"></p>
 
 </body>
 </html>

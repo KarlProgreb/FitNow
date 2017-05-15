@@ -14,6 +14,5 @@ public class Plan {
 	@Id
 	@GeneratedValue
 	long id;
-	int calories;
 	String content;
 }
