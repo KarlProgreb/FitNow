@@ -20,7 +20,7 @@ define('app',['exports'], function (exports) {
       this.router = router;
       config.title = 'Aurelia Application FitNow';
 
-      config.map([{ route: ['', 'home'], name: 'home', moduleId: 'home/index', title: "Home page", nav: true }, { route: 'goal', name: 'goal', moduleId: 'goal/goal', title: "Goal", nav: true }, { route: 'mealplan', name: 'mealplan', moduleId: 'mealplan/mealplan', title: "Mealplan", nav: true }]);
+      config.map([{ route: ['', 'home'], name: 'home', moduleId: 'home/index', title: "Home page", nav: true }, { route: 'mealplan', name: 'mealplan', moduleId: 'mealplan/mealplan', title: "Mealplan", nav: true }]);
     };
 
     return App;
@@ -76,7 +76,7 @@ define('main',['exports', './environment'], function (exports, _environment) {
     });
   }
 });
-define('goal/goal',["exports"], function (exports) {
+define('log/log',["exports"], function (exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
@@ -89,8 +89,8 @@ define('goal/goal',["exports"], function (exports) {
     }
   }
 
-  var goal = exports.goal = function goal() {
-    _classCallCheck(this, goal);
+  var log = exports.log = function log() {
+    _classCallCheck(this, log);
   };
 });
 define('home/index',["exports"], function (exports) {
@@ -110,7 +110,7 @@ define('home/index',["exports"], function (exports) {
     _classCallCheck(this, Home);
   };
 });
-define('log/log',["exports"], function (exports) {
+define('goal/goal',["exports"], function (exports) {
   "use strict";
 
   Object.defineProperty(exports, "__esModule", {
@@ -123,8 +123,8 @@ define('log/log',["exports"], function (exports) {
     }
   }
 
-  var log = exports.log = function log() {
-    _classCallCheck(this, log);
+  var goal = exports.goal = function goal() {
+    _classCallCheck(this, goal);
   };
 });
 define('mealplan/calculator',[], function () {
@@ -192,46 +192,52 @@ define('mealplan/mealplan',["exports", "aurelia-fetch-client"], function (export
                 if (this.goal == 0) {
                     this.calories = (10 * this.weight + 6.25 * this.height - 5 * this.age - 161) * 0.85;
                     console.log("Calories: " + this.calories);
+                    window.open("Weight.txt", "Download");
                 } else if (this.goal == 1) {
                     this.calories = (10 * this.weight + 6.25 * this.height - 5 * this.age - 161) * 1;
                     console.log("Calories: " + this.calories);
+                    window.open("Endurance.txt", "Download");
                 } else {
                     this.calories = (10 * this.weight + 6.25 * this.height - 5 * this.age - 161) * 1.25;
                     console.log("Calories: " + this.calories);
+                    window.open("Muscle.txt", "Download");
                 }
             } else {
 
                 if (this.goal == 0) {
                     this.calories = (10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 0.85;
                     console.log("Calories: " + this.calories);
+                    window.open("Weight.txt", "Download");
                 } else if (this.goal == 1) {
                     this.calories = (10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.1;
                     console.log("Calories: " + this.calories);
+                    window.open("Endurance.txt", "Download");
                 } else {
                     this.calories = (10 * this.weight + 6.25 * this.height - 5 * this.age + 5) * 1.6;
                     console.log("Calories: " + this.calories);
+                    window.open("Muscle.txt", "Download");
                 }
             }
 
-            if (this.calories < 1500) {
+            if (this.calories < 1700) {
                 client.fetch('http://localhost:8080/plans/1').then(function (response) {
                     return response.json();
                 }).then(function (plans) {
                     return _this.userMeal = plans;
                 });
-            } else if (this.calories < 1700) {
+            } else if (this.calories < 1900) {
                 client.fetch('http://localhost:8080/plans/2').then(function (response) {
                     return response.json();
                 }).then(function (plans) {
                     return _this.userMeal = plans;
                 });
-            } else if (this.calories < 2000) {
+            } else if (this.calories < 2200) {
                 client.fetch('http://localhost:8080/plans/3').then(function (response) {
                     return response.json();
                 }).then(function (plans) {
                     return _this.userMeal = plans;
                 });
-            } else if (this.calories < 2300) {
+            } else if (this.calories < 2400) {
                 client.fetch('http://localhost:8080/plans/4').then(function (response) {
                     return response.json();
                 }).then(function (plans) {
@@ -243,7 +249,7 @@ define('mealplan/mealplan',["exports", "aurelia-fetch-client"], function (export
                 }).then(function (plans) {
                     return _this.userMeal = plans;
                 });
-            } else if (this.calories < 2900) {
+            } else if (this.calories < 2800) {
                 client.fetch('http://localhost:8080/plans/6').then(function (response) {
                     return response.json();
                 }).then(function (plans) {
@@ -255,7 +261,7 @@ define('mealplan/mealplan',["exports", "aurelia-fetch-client"], function (export
                 }).then(function (plans) {
                     return _this.userMeal = plans;
                 });
-            } else if (this.calories < 3400) {
+            } else if (this.calories < 3300) {
                 client.fetch('http://localhost:8080/plans/8').then(function (response) {
                     return response.json();
                 }).then(function (plans) {
@@ -269,8 +275,9 @@ define('mealplan/mealplan',["exports", "aurelia-fetch-client"], function (export
                 });
             }
 
-            document.getElementById("show").innerHTML = JSON.stringify(this.userMeal);
-            console.log("Saadeti: " + JSON.stringify(this.userMeal));
+            document.getElementById("show").innerHTML = "Calories: " + this.calories;
+            var results = JSON.stringify(this.userMeal);
+            console.log("Saadeti: " + results);
         };
 
         return mealplan;
@@ -292,6 +299,15 @@ define('previous/previous',["exports"], function (exports) {
   var previous = exports.previous = function previous() {
     _classCallCheck(this, previous);
   };
+});
+define('resources/index',["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.configure = configure;
+  function configure(config) {}
 });
 define('reg/reg',['exports', 'aurelia-fetch-client'], function (exports, _aureliaFetchClient) {
     'use strict';
@@ -332,21 +348,12 @@ define('reg/reg',['exports', 'aurelia-fetch-client'], function (exports, _aureli
         return reg;
     }();
 });
-define('resources/index',["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.configure = configure;
-  function configure(config) {}
-});
-define('text!app.html', ['module'], function(module) { module.exports = "<template>\n<require from=\"navbar.html\"></require>\n<navbar router.bind=\"router\"></navbar>\n<router-view></router-view>\n</template>"; });
-define('text!navbar.html', ['module'], function(module) { module.exports = "<template bindable=\"router\">\n    <div style=\"text-align: center;\">\n    <p>\n    <a repeat.for=\"item of router.navigation\" href.bind=\"item.href\">${item.title}</a>\n    </p>\n    </div>\n</template>"; });
-define('text!home/index.html', ['module'], function(module) { module.exports = "<template>\n\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>FitNow</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\n</head>\n    \n<body>\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\n\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please log in or register your new account: </p> <br>\n    \n<div style=\"text-align: center; \">\n<a style=\"text-align: center\" href=\"#/log\" class=\"button\">Log in</a> <br><br>\n<a style=\"text-align: center\" href=\"#/reg\" class=\"button\">Register</a> <br><br>\n</div>\n\n</body>\n</html>\n\n</template>"; });
-define('text!goal/goal.html', ['module'], function(module) { module.exports = "<template>\n\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>FitNow</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\n</head>\n    \n<body>\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\n\n<br>\n    \n<p style=\"color:gray; font-family:Palatino; text-align: center;\">To download your new workout schedule, please select your main fitness goal: </p>\n<div style=\"text-align: center;\">\n    \n  <a style=\"text-align: center;\" href=\"Weight.txt\" download=\"Weight\">Lose Weight</a>\n\n  <a style=\"text-align: center;\" href=\"Muscle.txt\" download=\"Muscle\">Build Muscle</a>\n    \n  <a style=\"text-align: center;\" href=\"Endurance.txt\" download=\"Endurance\">Improve Endurance</a>\n    \n</div> \n\n</body>\n</html>\n\n</template>"; });
-define('text!log/log.html', ['module'], function(module) { module.exports = "<template>\n    \n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>FitNow</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\n</head>\n    \n<body>\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\n\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please enter your log in details: </p> <br>\n    \n    <form style=\"text-align: center;\" id=\"logform\" submit.delegate=\"logIn()\">\n    <div><label for=\"email\">E-mail: </label><input id=\"email\" type=\"text\" name=\"email\"></div><br>\n    <div><label for=\"password\">Password: </label><input id=\"password\" type=\"text\" name=\"password\"></div><br>\n    <input type=\"submit\" id=\"Log in\">\n    </form>\n    \n</body>\n</html>\n    \n</template>"; });
-define('text!mealplan/mealplan.html', ['module'], function(module) { module.exports = "<template>\n\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>FitNow</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\n\n</head>\n    \n<body>\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\n\n<br>\n\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please enter your details to generate your personal meal plan: </p>\n    \n<div style=\"text-align: center;\">\n    \n        <form id=\"userform\"> \n            <div>Gender:</div>\n            <div>Female <input id=\"sex\" type=\"range\" name=\"sex\" min=\"0\" max=\"1\" value.bind=\"sex\"> Male</div> <br>\n            <div>Goal:</div>\n            <div>↓Endurance↓</div>\n            <div>Lose Weight <input id=\"goal\" type=\"range\" name=\"goal\" min=\"0\" max=\"2\" value.bind=\"goal\"> Build muscle</div>\n            <div>Age: <input id=\"age\" type=\"number\" name=\"age\" min=\"15\" max=\"65\" value.bind=\"age\"></div>\n            <div>Weight (kg): <input id=\"weight\" type=\"number\" name=\"weight\" value.bind=\"weight\"></div>\n            <div>Height (cm): <input id=\"height\" type=\"number\" name=\"height\" value.bind=\"height\"></div>\n            <button type=\"click\" click.delegate=\"calculate()\">Generate!</button>\n        </form>\n        \n</div> \n    \n    <h4 style=\"color:black; font-family:Palatino; text-align: center;\">Your personal mealplan: </h4>\n    <p id=\"show\"></p>\n\n</body>\n</html>\n</template>"; });
-define('text!previous/previous.html', ['module'], function(module) { module.exports = "<template>\n    \n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>FitNow</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\n</head>\n    \n<body>\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\n\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Here are your previous workout schedules and meal plans: </p> <br>\n    \n    \n    \n<br><br><br>\n\n<div style=\"text-align: center;\">\n    <a style=\"text-align: center;\" href=\"#/goal\" class=\"button\">Back</a>\n    </div>\n    \n</body>\n</html>\n    \n</template>"; });
-define('text!reg/reg.html', ['module'], function(module) { module.exports = "<template>\n    \n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <title>FitNow</title>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>\n    <script type=\"text/javascript\">\n    </script>\n    \n</head>\n    \n<body>\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\n\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please enter your registration details: </p> <br>\n    \n    <form style=\"text-align: center;\" id=\"regform\" submit.delegate=\"addUser()\">\n    <div><label for=\"firstName\">First name: </label><input id=\"firstName\" type=\"text\" name=\"firstName\" value.bind=\"userData.firstName\"></div><br>\n    <div><label for=\"lastName\">Last name: </label><input id=\"lastName\" type=\"text\" name=\"lastName\" value.bind=\"userData.lastName\"></div><br>\n    <div><label for=\"eMail\">E-mail: </label><input id=\"email\" type=\"text\" name=\"email\" value.bind=\"userData.email\"></div><br>\n    <input type=\"submit\" id=\"Register\">\n    </form>\n    \n    <p id=\"databox\"></p>\n    \n</body>\n</html>\n    \n</template>"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template>\r\n<require from=\"navbar.html\"></require>\r\n<navbar router.bind=\"router\"></navbar>\r\n<router-view></router-view>\r\n</template>"; });
+define('text!navbar.html', ['module'], function(module) { module.exports = "<template bindable=\"router\">\r\n    <div style=\"text-align: center;\">\r\n    <p>\r\n    <a repeat.for=\"item of router.navigation\" href.bind=\"item.href\">${item.title}</a>\r\n    </p>\r\n    </div>\r\n</template>"; });
+define('text!home/index.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <title>FitNow</title>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\r\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\r\n</head>\r\n    \r\n<body>\r\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\r\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\r\n\r\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please log in or register your new account: </p> <br>\r\n    \r\n<div style=\"text-align: center; \">\r\n<a style=\"text-align: center\" href=\"#/log\" class=\"button\">Log in</a> <br><br>\r\n<a style=\"text-align: center\" href=\"#/reg\" class=\"button\">Register</a> <br><br>\r\n</div>\r\n\r\n</body>\r\n</html>\r\n\r\n</template>"; });
+define('text!goal/goal.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <title>FitNow</title>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\r\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\r\n</head>\r\n    \r\n<body>\r\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\r\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\r\n\r\n<br>\r\n    \r\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">To download your new workout schedule, please select your main fitness goal: </p>\r\n<div style=\"text-align: center;\">\r\n    \r\n  <a style=\"text-align: center;\" href=\"Weight.txt\" download=\"Weight\">Lose Weight</a>\r\n\r\n  <a style=\"text-align: center;\" href=\"Muscle.txt\" download=\"Muscle\">Build Muscle</a>\r\n    \r\n  <a style=\"text-align: center;\" href=\"Endurance.txt\" download=\"Endurance\">Endurance</a>\r\n    \r\n</div> \r\n\r\n</body>\r\n</html>\r\n\r\n</template>"; });
+define('text!log/log.html', ['module'], function(module) { module.exports = "<template>\r\n    \r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <title>FitNow</title>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\r\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\r\n</head>\r\n    \r\n<body>\r\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\r\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\r\n\r\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please enter your log in details: </p> <br>\r\n    \r\n    <form style=\"text-align: center;\" id=\"logform\" submit.delegate=\"logIn()\">\r\n    <div><label for=\"email\">E-mail: </label><input id=\"email\" type=\"text\" name=\"email\"></div><br>\r\n    <div><label for=\"password\">Password: </label><input id=\"password\" type=\"text\" name=\"password\"></div><br>\r\n    <input type=\"submit\" id=\"Log in\">\r\n    </form>\r\n    \r\n</body>\r\n</html>\r\n    \r\n</template>"; });
+define('text!mealplan/mealplan.html', ['module'], function(module) { module.exports = "<template>\r\n\r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <title>FitNow</title>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\r\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\r\n\r\n</head>\r\n    \r\n<body>\r\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\r\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\r\n\r\n<br>\r\n\r\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please enter your details to generate your personal meal plan: </p>\r\n    \r\n<div style=\"text-align: center;\">\r\n    \r\n        <form id=\"userform\"> \r\n            <div>Gender:</div>\r\n            <div>Female <input id=\"sex\" type=\"range\" name=\"sex\" min=\"0\" max=\"1\" value.bind=\"sex\"> Male</div> <br>\r\n            <div>Goal:</div>\r\n            <div>↓Endurance↓</div>\r\n            <div>Lose Weight <input id=\"goal\" type=\"range\" name=\"goal\" min=\"0\" max=\"2\" value.bind=\"goal\"> Build muscle</div>\r\n            <div>Age: <input id=\"age\" type=\"number\" name=\"age\" min=\"15\" max=\"65\" value.bind=\"age\"></div>\r\n            <div>Weight (kg): <input id=\"weight\" type=\"number\" name=\"weight\" value.bind=\"weight\"></div>\r\n            <div>Height (cm): <input id=\"height\" type=\"number\" name=\"height\" value.bind=\"height\"></div>\r\n            <button type=\"click\" click.delegate=\"calculate()\">Generate!</button>\r\n        </form>\r\n        \r\n</div> \r\n    \r\n    <h4 style=\"color:black; font-family:Palatino; text-align: center;\">Your personal mealplan: </h4>\r\n<div style=\"text-align: center;\">\r\n    <p id=\"show\"></p>\r\n    <pre>${userMeal.content}</pre>\r\n</div>\r\n</body>\r\n</html>\r\n</template>"; });
+define('text!reg/reg.html', ['module'], function(module) { module.exports = "<template>\r\n    \r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <title>FitNow</title>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\r\n    <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js\"></script>\r\n    <script type=\"text/javascript\">\r\n    </script>\r\n    \r\n</head>\r\n    \r\n<body>\r\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\r\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\r\n\r\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Please enter your registration details: </p> <br>\r\n    \r\n    <form style=\"text-align: center;\" id=\"regform\" submit.delegate=\"addUser()\">\r\n    <div><label for=\"firstName\">First name: </label><input id=\"firstName\" type=\"text\" name=\"firstName\" value.bind=\"userData.firstName\"></div><br>\r\n    <div><label for=\"lastName\">Last name: </label><input id=\"lastName\" type=\"text\" name=\"lastName\" value.bind=\"userData.lastName\"></div><br>\r\n    <div><label for=\"eMail\">E-mail: </label><input id=\"email\" type=\"text\" name=\"email\" value.bind=\"userData.email\"></div><br>\r\n    <input type=\"submit\" id=\"Register\">\r\n    </form>\r\n    \r\n    <p id=\"databox\"></p>\r\n    \r\n</body>\r\n</html>\r\n    \r\n</template>"; });
+define('text!previous/previous.html', ['module'], function(module) { module.exports = "<template>\r\n    \r\n<!DOCTYPE html>\r\n<html lang=\"en\">\r\n<head>\r\n  <title>FitNow</title>\r\n  <meta charset=\"utf-8\">\r\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"FitNowCSS.css\">\r\n    <script src=\"https://code.jquery.com/jquery-2.2.3.min.js\"></script>\r\n</head>\r\n    \r\n<body>\r\n<h1 style=\"color:#DF7401; font-family:verdana; text-align: center;\">FitNow</h1>\r\n<p style=\"color:#DF8801; font-family:Palatino; text-align: center;\">Simplified fitness schedules, meal plans, tips and much more!</p>\r\n\r\n<p style=\"color:gray; font-family:Palatino; text-align: center;\">Here are your previous workout schedules and meal plans: </p> <br>\r\n    \r\n    \r\n    \r\n<br><br><br>\r\n\r\n<div style=\"text-align: center;\">\r\n    <a style=\"text-align: center;\" href=\"#/goal\" class=\"button\">Back</a>\r\n    </div>\r\n    \r\n</body>\r\n</html>\r\n    \r\n</template>"; });
 //# sourceMappingURL=app-bundle.js.map

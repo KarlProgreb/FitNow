@@ -11,10 +11,8 @@
 }
 
 body {
-    overflow-y: hidden ! important;
-    overflow-x: hidden ! important;
     background-color: #f8f8f8;
-    background-size: cover;
+    background-size: auto;
     background-repeat: no-repeat;
     background-position: right;
     background-image: url("BGN.jpg");
@@ -32,7 +30,7 @@ a:link {
     border-radius: 20px;
     background: white;
     padding: 24px; 
-    width: 85px;
+    width: 95px;
     height: 22px; 
     text-align: center; 
     text-decoration: none;
